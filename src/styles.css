@@ -77,12 +77,22 @@ body {
   display: table;
 }
 
+.game-row{
+  display: flex;
+}
+
+.status:after{
+  clear: both;
+  content: '';
+  display: table;
+}
+
 .status {
   margin-bottom: 10px;
 }
 .game {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .game-info {

@@ -13,12 +13,7 @@ function Square({ value, onSquareClick }) {
 
 function Board({isXNext, squares, onPlay, winner}) {
 
-  let status;
-  if (winner) {
-    status = `Winner: ${winner}`;
-  } else {
-    status = `Next player: ${(isXNext ? "X" : "O")}`;
-  } 
+
 
   function handleClick(index) {
     if (squares[index]) {
@@ -37,7 +32,7 @@ function Board({isXNext, squares, onPlay, winner}) {
 
   return (
     <div>
-      <div className="status">{status}</div>
+      
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
@@ -64,6 +59,12 @@ export default function Game(){
   const currentSquares = history[history.length - 1];
 
   const winner = calculateWinnder(currentSquares);
+  let status;
+  if (winner) {
+    status = `Winner: ${winner}`;
+  } else {
+    status = `Next player: ${(isXNext ? "X" : "O")}`;
+  } 
 
   function handlePlay(nextSquares) {
     if(winner){
@@ -75,8 +76,23 @@ export default function Game(){
 
   return (
     <div className="game">
+      <div className="status">{status}</div>
       <div className="game-board">
-        <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+        <div className="game-row">
+          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+        </div>
+        <div className="game-row">
+          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+        </div>
+        <div className="game-row">
+          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
+        </div>
       </div>
       <div className="game-info">
         <ol>{/*TODO*/}</ol>

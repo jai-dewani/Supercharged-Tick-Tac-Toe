@@ -1,122 +1,104 @@
 import React, { useState } from "react";
+import Board from "./Board.js";
+import calculateWinnder from "./util.js";
 
-function Square({ value, onSquareClick }) {
-  return (
-    <button
-      className="square"
-      onClick={onSquareClick}
-    >
-      {value}
-    </button>
-  )
+export default function Game() {
+	const [isXNext, setIsXNext] = useState(true);
+    const [gameState, setGameState] = useState(Array.from({ length: 9 }, () => new Array(9).fill(null)));
+	const [winners, setWinners] = useState(Array(9).fill(null));
+    //Use [] to store all boards which can be active at once, 
+    //and only send isActive check down the components
+    
+    const [currentBoard, setCurrentBoard] = useState(4);
+
+	const winner = calculateWinnder(winners);
+	let status;
+	if (winner) {
+		status = `Winner: ${winner}`;
+	} else {
+		status = `Next player: ${(isXNext ? "X" : "O")}`;
+	}
+
+	status += ` Current Board: ${currentBoard}`;
+
+	function handlePlay(nextMoveBoardIndex, nextMoveIndex) {
+		if (winner) {
+			return;
+		}
+		
+        console.log("currentBoard", currentBoard);
+		console.log("nextMoveIndex", nextMoveIndex);
+		// console.log("boards", boards);
+
+		let newBoards = gameState.slice();
+		let newNextMoveBoard = newBoards[currentBoard].slice();
+		newNextMoveBoard[nextMoveIndex] = isXNext ? "X" : "O";
+		newBoards[currentBoard] = newNextMoveBoard;
+
+		setGameState(newBoards);
+		setCurrentBoard(nextMoveIndex);
+		setIsXNext(!isXNext);
+
+		checkForBoardWin(newNextMoveBoard, nextMoveBoardIndex);
+	}
+
+	function checkForBoardWin(boardState, boardIndex) {
+		// let boardState = gameState[boardIndex];
+		// console.log(boardState);
+		let boardWinner = calculateWinnder(boardState);
+		if (boardWinner) {
+			let newWinners = winners.slice();
+
+			newWinners[boardIndex] = boardWinner;
+			console.log("boardWinner", boardWinner, boardIndex);
+			console.log("Winners: ", newWinners);
+
+			setWinners(newWinners);
+		}
+	}
+
+	return (
+		<div className="game">
+			<div className="status">{status}</div>
+			<div className="game-board">
+				<div className="game-row">
+					<Board 
+                        squares={gameState[0]} onPlay={handlePlay} 
+                        boardIndex={0} isCurrentBoard={currentBoard === 0} winner={winner} />
+					<Board 
+                        squares={gameState[1]} onPlay={handlePlay} 
+                        boardIndex={1} isCurrentBoard={currentBoard === 1} winner={winner} />
+					<Board 
+                        squares={gameState[2]} onPlay={handlePlay} 
+                        boardIndex={2} isCurrentBoard={currentBoard === 2} winner={winner} />
+				</div>
+				<div className="game-row">
+					<Board 
+                        squares={gameState[3]} onPlay={handlePlay} 
+                        boardIndex={3} isCurrentBoard={currentBoard === 3} winner={winner} />
+					<Board 
+                        squares={gameState[4]} onPlay={handlePlay} 
+                        boardIndex={4} isCurrentBoard={currentBoard === 4} winner={winner} />
+					<Board 
+                        squares={gameState[5]} onPlay={handlePlay} 
+                        boardIndex={5} isCurrentBoard={currentBoard === 5} winner={winner} />
+				</div>
+				<div className="game-row">
+					<Board 
+                        squares={gameState[6]} onPlay={handlePlay} 
+                        boardIndex={6} isCurrentBoard={currentBoard === 6} winner={winner} />
+					<Board 
+                        squares={gameState[7]} onPlay={handlePlay} 
+                        boardIndex={7} isCurrentBoard={currentBoard === 7} winner={winner} />
+					<Board 
+                        squares={gameState[8]} onPlay={handlePlay} 
+                        boardIndex={8} isCurrentBoard={currentBoard === 8} winner={winner} />
+				</div>
+			</div>
+			<div className="game-info">
+				<ol>{/*TODO*/}</ol>
+			</div>
+		</div>
+	)
 }
 
-function Board({isXNext, squares, onPlay, winner}) {
-
-
-
-  function handleClick(index) {
-    if (squares[index]) {
-      return;
-    }
-    const nextSquares = squares.slice();
-    if (isXNext) {
-      nextSquares[index] = "X";
-    }
-    else {
-      nextSquares[index] = "0";
-    }
-    onPlay(nextSquares);
-  }
-
-
-  return (
-    <div>
-      
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
-      </div>
-    </div>
-  )
-}
-
-export default function Game(){
-
-  const [isXNext, setIsXNext] = useState(true);
-  const [history, setHistory] = useState([Array(9).fill(null)]);
-  const currentSquares = history[history.length - 1];
-
-  const winner = calculateWinnder(currentSquares);
-  let status;
-  if (winner) {
-    status = `Winner: ${winner}`;
-  } else {
-    status = `Next player: ${(isXNext ? "X" : "O")}`;
-  } 
-
-  function handlePlay(nextSquares) {
-    if(winner){
-      return;
-    }
-    setHistory([...history, nextSquares]);
-    setIsXNext(!isXNext);
-  }
-
-  return (
-    <div className="game">
-      <div className="status">{status}</div>
-      <div className="game-board">
-        <div className="game-row">
-          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
-          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
-          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
-        </div>
-        <div className="game-row">
-          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
-          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
-          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
-        </div>
-        <div className="game-row">
-          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
-          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
-          <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} winner={winner} />
-        </div>
-      </div>
-      <div className="game-info">
-        <ol>{/*TODO*/}</ol>
-      </div>
-    </div>
-  )
-}
-
-function calculateWinnder(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}

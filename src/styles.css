@@ -58,17 +58,38 @@ body {
 
 .square {
   background: #fff;
-  border: 1px solid #999;
+  border: 2px solid #c4c3c3;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  /* margin-right: -1px; */
+  /* margin-top: -1px; */
   padding: 0;
   text-align: center;
   width: 34px;
+}
+
+.activeSquare {
+  background: #fff;
+  border: 2px solid black !important;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  /* margin-right: -1px; */
+  /* margin-top: -1px; */
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board{
+  margin-right: -2px;
+  margin-top: -2px;
+  border:2px solid black;
 }
 
 .board-row:after {

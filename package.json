@@ -1,20 +1,24 @@
 {
+  "name": "ticktacktoe9000",
+  "description": "Tick Tack Toe pro",
+  "version": "1.0.0",
+  "homepage": "https://jai-dewani.github.io/Supercharged-Tick-Tac-Toe",
+  "main": "public/index.js",
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.0"
   },
-  "main": "public/index.js",
   "devDependencies": {
+    "gh-pages": "^6.0.0",
     "react-scripts": "1.0.0"
   },
-  "name": "ticktacktoe9000",
-  "description": "Tick Tack Toe pro",
-  "version": "0.0.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

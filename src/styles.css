@@ -87,9 +87,9 @@ body {
 }
 
 .board{
-  margin-right: -2px;
-  margin-top: -2px;
-  border:2px solid black;
+  margin-right: 2px;
+  margin-top: 2px;
+  border:2px solid rgb(87, 87, 87);
 }
 
 .board-row:after {
@@ -110,6 +110,13 @@ body {
 
 .status {
   margin-bottom: 10px;
+  text-align: center;
+}
+
+.winner {
+  margin-bottom: 10px;
+  text-align: center;
+  color: red;
 }
 .game {
   display: flex;
@@ -118,4 +125,23 @@ body {
 
 .game-info {
   margin-left: 20px;
+}
+
+.game-board {
+  margin: 10px auto;
+}
+
+.result {
+  top: -102px;
+  position: relative;
+  left: 0px;
+  font-size: 90px;
+  margin: 0;
+  text-align: center;
+  margin-bottom: -110px;
+  padding: 0px;
+}
+
+.game-rules-section{
+  margin-bottom: 20px;
 }

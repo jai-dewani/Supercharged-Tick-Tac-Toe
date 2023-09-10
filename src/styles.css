@@ -90,6 +90,8 @@ body {
   margin-right: 2px;
   margin-top: 2px;
   border:2px solid rgb(87, 87, 87);
+  height: 106px;
+  width: 106px;
 }
 
 .board-row:after {
@@ -131,6 +133,10 @@ body {
   margin: 10px auto;
 }
 
+.inner-board{
+  position: absolute;
+}
+
 .result {
   top: -102px;
   position: relative;
@@ -138,7 +144,7 @@ body {
   font-size: 90px;
   margin: 0;
   text-align: center;
-  margin-bottom: -110px;
+  /* margin-bottom: -104px; */
   padding: 0px;
 }
 

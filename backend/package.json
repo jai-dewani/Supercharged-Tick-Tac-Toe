@@ -1,0 +1,26 @@
+{
+  "name": "ticktacktoe9000-backend",
+  "version": "1.0.0",
+  "description": "A backend for the Super Tick Tack Toe Game",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "redis": "^4.7.0",
+    "socket.io": "^4.7.2"
+  },
+  "scripts": {
+    "start": "nodemon server",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

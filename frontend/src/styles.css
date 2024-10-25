@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
 }
@@ -86,27 +90,27 @@ body {
   width: 34px;
 }
 
-.board{
+.board {
   margin-right: 2px;
   margin-top: 2px;
-  border:2px solid rgb(87, 87, 87);
+  border: 2px solid rgb(87, 87, 87);
   height: 106px;
   width: 106px;
 }
 
 .board-row:after {
   clear: both;
-  content: '';
+  content: "";
   display: table;
 }
 
-.game-row{
+.game-row {
   display: flex;
 }
 
-.status:after{
+.status:after {
   clear: both;
-  content: '';
+  content: "";
   display: table;
 }
 
@@ -133,7 +137,7 @@ body {
   margin: 10px auto;
 }
 
-.inner-board{
+.inner-board {
   position: absolute;
 }
 
@@ -148,6 +152,55 @@ body {
   padding: 0px;
 }
 
-.game-rules-section{
+.game-rules-section {
   margin-bottom: 20px;
+}
+.joinGame{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.joinNewGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 10px 0;
+}
+
+.joinNewGame-userId{
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 10px 0 ;
+}
+
+.userIdText{
+  margin-right: 10px;
+}
+
+.userIdButton{
+  margin: 0 10px 0 10px;
+}
+
+.userIdInput {
+  margin: 0 10px 0 10px;
+}
+
+.or{
+  display: flex;
+  justify-content: center;
+  margin: 0 0 10px 0;
+}
+
+.joinExistingGame{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.joinExistingGame-userId, .joinExistingGame-gameId{
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 10px 0 ;
 }

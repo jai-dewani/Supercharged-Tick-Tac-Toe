@@ -4,9 +4,9 @@ function Square({ value, onSquareClick, isActive }) {
     return (
         <button
             className={isActive ? "activeSquare" : "square"}
-            onClick={isActive ? onSquareClick : null}
+            onClick={isActive ? onSquareClick : onSquareClick}
         >
-            {value}
+            {(value==="0")? "": value}
         </button>
     )
 }
@@ -14,12 +14,13 @@ function Square({ value, onSquareClick, isActive }) {
 export default function Board({ squares, onPlay, boardIndex, isCurrentBoardActve, winner }) {
 
     function handleClick(index) {
-        if (squares[index]) {
+        if (squares[index] && squares[index]!=="0") {
             return;
         }
+        console.log(`handleClick ${boardIndex} ${index}`)
         onPlay(boardIndex, index);
     }
-
+    // console.log(squares, boardIndex, isCurrentBoardActve, winner)
     return (
         <div className="board">
             <div className="inner-board">

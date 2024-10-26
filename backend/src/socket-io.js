@@ -13,7 +13,7 @@ let io;
 export const socketConnection = (server) => {
     io = new Server(server, {
         cors: {
-            origin: "http://localhost:3000"
+            origin: "*"
         }
     });
     io.on('connection', (socket) => {

@@ -18,9 +18,6 @@ export default function Game({ userId, gameId }) {
     const [gameWinner, setGameWinner] = useState(null);
     const [statusMessage, setStatusMessage] = useState("");
 
-
-
-
     async function updateGameState(state) {
         console.log(`App.js New Game state - ${JSON.stringify(state)}`)
         setUsers(state.users);

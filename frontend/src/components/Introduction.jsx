@@ -1,7 +1,7 @@
 import React from "react";
-import ListGameRules from "./ListGameRulesComponent";
-import CreateNewGameComponent from "./CreateNewGameComponent";
-import JoinExistingGame from "./JoinExistingGameComponent";
+import ListGameRules from "./ListGameRulesComponent.jsx";
+import CreateNewGameComponent from "./CreateNewGameComponent.jsx";
+import JoinExistingGame from "./JoinExistingGameComponent.jsx";
 
 export default function Introduction({ startGame }) {
     return (

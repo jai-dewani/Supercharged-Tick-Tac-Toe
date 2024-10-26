@@ -1,7 +1,6 @@
-import Board from "./Board.js";
+import Board from "./BoardComponent.jsx";
 import React, { useRef, useEffect, useState } from "react";
-import { calculateWinnder, ReplaceAt } from "../util.js";
-import '../util.js'
+import { calculateWinnder, ReplaceAt } from "../service/util.js";
 import { socket } from "../service/socket.js";
 
 

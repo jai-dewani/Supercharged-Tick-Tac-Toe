@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { socket } from "./service/socket.js";
-import Game from "./components/GameComponent.js";
-import Introduction from "./components/Introduction.js";
+import Game from "./components/GameComponent.jsx";
+import Introduction from "./components/Introduction.jsx";
 
 export default function App() {
     const [userId, setUserId] = useState("");
